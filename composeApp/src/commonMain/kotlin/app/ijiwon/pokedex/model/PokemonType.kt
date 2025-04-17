@@ -1,5 +1,8 @@
 package app.ijiwon.pokedex.model
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 enum class PokemonType {
     NORMAL,
     FIRE,
