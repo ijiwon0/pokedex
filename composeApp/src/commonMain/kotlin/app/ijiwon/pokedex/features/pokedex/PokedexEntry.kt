@@ -27,11 +27,11 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import app.ijiwon.pokedex.core.designsystem.theme.Gray100
-import app.ijiwon.pokedex.core.designsystem.theme.Gray50
-import app.ijiwon.pokedex.core.designsystem.theme.Gray700
-import app.ijiwon.pokedex.core.designsystem.theme.Gray900
-import app.ijiwon.pokedex.core.ui.pokemon.type.colors
+import app.ijiwon.pokedex.designsystem.theme.Gray100
+import app.ijiwon.pokedex.designsystem.theme.Gray50
+import app.ijiwon.pokedex.designsystem.theme.Gray700
+import app.ijiwon.pokedex.designsystem.theme.Gray900
+import app.ijiwon.pokedex.ui.pokemon.type.colors
 import app.ijiwon.pokedex.model.Pokemon
 import coil3.compose.AsyncImage
 

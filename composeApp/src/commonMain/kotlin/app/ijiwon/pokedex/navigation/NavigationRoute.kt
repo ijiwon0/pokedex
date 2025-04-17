@@ -1,4 +1,4 @@
-package app.ijiwon.pokedex.core.navigation
+package app.ijiwon.pokedex.navigation
 
 import kotlinx.serialization.Serializable
 

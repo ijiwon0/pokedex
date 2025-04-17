@@ -12,8 +12,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import app.ijiwon.pokedex.core.designsystem.component.TextField
-import app.ijiwon.pokedex.core.designsystem.theme.White
+import app.ijiwon.pokedex.designsystem.component.TextField
+import app.ijiwon.pokedex.designsystem.theme.White
 
 @Preview
 @Composable

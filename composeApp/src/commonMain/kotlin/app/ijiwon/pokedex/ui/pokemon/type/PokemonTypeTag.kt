@@ -1,4 +1,4 @@
-package app.ijiwon.pokedex.core.ui.pokemon.type
+package app.ijiwon.pokedex.ui.pokemon.type
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border

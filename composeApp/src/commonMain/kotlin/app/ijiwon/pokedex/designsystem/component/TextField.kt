@@ -1,4 +1,4 @@
-package app.ijiwon.pokedex.core.designsystem.component
+package app.ijiwon.pokedex.designsystem.component
 
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -27,10 +27,10 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
-import app.ijiwon.pokedex.core.designsystem.theme.Gray100
-import app.ijiwon.pokedex.core.designsystem.theme.Gray50
-import app.ijiwon.pokedex.core.designsystem.theme.Gray500
-import app.ijiwon.pokedex.core.designsystem.theme.Gray900
+import app.ijiwon.pokedex.designsystem.theme.Gray100
+import app.ijiwon.pokedex.designsystem.theme.Gray50
+import app.ijiwon.pokedex.designsystem.theme.Gray500
+import app.ijiwon.pokedex.designsystem.theme.Gray900
 
 @Composable
 fun TextField(

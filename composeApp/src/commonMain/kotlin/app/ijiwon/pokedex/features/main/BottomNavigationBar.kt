@@ -23,9 +23,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import app.ijiwon.pokedex.core.designsystem.theme.Gray50
-import app.ijiwon.pokedex.core.designsystem.theme.Gray500
-import app.ijiwon.pokedex.core.designsystem.theme.Gray900
+import app.ijiwon.pokedex.designsystem.theme.Gray50
+import app.ijiwon.pokedex.designsystem.theme.Gray500
+import app.ijiwon.pokedex.designsystem.theme.Gray900
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 import org.jetbrains.compose.resources.painterResource

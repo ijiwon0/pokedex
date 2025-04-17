@@ -1,4 +1,4 @@
-package app.ijiwon.pokedex.core.designsystem.theme
+package app.ijiwon.pokedex.designsystem.theme
 
 import androidx.compose.ui.graphics.Color
 

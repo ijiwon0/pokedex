@@ -24,9 +24,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import app.ijiwon.pokedex.core.designsystem.theme.Green200
-import app.ijiwon.pokedex.core.designsystem.theme.White
-import app.ijiwon.pokedex.core.navigation.MainNavigationRoute
+import app.ijiwon.pokedex.designsystem.theme.Green200
+import app.ijiwon.pokedex.designsystem.theme.White
+import app.ijiwon.pokedex.navigation.MainNavigationRoute
 import app.ijiwon.pokedex.features.home.homeScreen
 import app.ijiwon.pokedex.features.items.itemsScreen
 import app.ijiwon.pokedex.features.pokedex.pokedexScreen

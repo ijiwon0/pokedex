@@ -1,4 +1,4 @@
-package app.ijiwon.pokedex.core.ui.paging
+package app.ijiwon.pokedex.ui.paging
 
 import android.annotation.SuppressLint
 import android.os.Parcel

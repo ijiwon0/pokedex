@@ -1,4 +1,4 @@
-package app.ijiwon.pokedex.core.designsystem.theme
+package app.ijiwon.pokedex.designsystem.theme
 
 import androidx.compose.material3.LocalRippleConfiguration
 import androidx.compose.material3.MaterialTheme

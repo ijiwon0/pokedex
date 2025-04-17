@@ -18,10 +18,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
-import app.ijiwon.pokedex.core.designsystem.component.TextField
-import app.ijiwon.pokedex.core.designsystem.theme.Gray100
-import app.ijiwon.pokedex.core.designsystem.theme.Gray300
-import app.ijiwon.pokedex.core.designsystem.theme.Gray50
+import app.ijiwon.pokedex.designsystem.component.TextField
+import app.ijiwon.pokedex.designsystem.theme.Gray100
+import app.ijiwon.pokedex.designsystem.theme.Gray300
+import app.ijiwon.pokedex.designsystem.theme.Gray50
 import org.jetbrains.compose.resources.painterResource
 import pokedex.composeapp.generated.resources.Res
 import pokedex.composeapp.generated.resources.filter

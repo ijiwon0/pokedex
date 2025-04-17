@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package app.ijiwon.pokedex.core.ui.paging
+package app.ijiwon.pokedex.ui.paging
 
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.runtime.Composable

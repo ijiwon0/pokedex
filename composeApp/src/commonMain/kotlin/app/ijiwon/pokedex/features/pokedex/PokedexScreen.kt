@@ -18,10 +18,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.paging.LoadState
-import app.ijiwon.pokedex.core.designsystem.component.ActivityIndicator
-import app.ijiwon.pokedex.core.designsystem.theme.White
-import app.ijiwon.pokedex.core.ui.paging.LazyPagingItems
-import app.ijiwon.pokedex.core.ui.paging.collectAsLazyPagingItems
+import app.ijiwon.pokedex.designsystem.component.ActivityIndicator
+import app.ijiwon.pokedex.designsystem.theme.White
+import app.ijiwon.pokedex.ui.paging.LazyPagingItems
+import app.ijiwon.pokedex.ui.paging.collectAsLazyPagingItems
 import app.ijiwon.pokedex.model.Pokemon
 import org.koin.compose.viewmodel.koinViewModel
 

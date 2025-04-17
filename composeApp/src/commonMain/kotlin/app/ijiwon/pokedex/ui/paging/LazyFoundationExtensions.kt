@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package app.ijiwon.pokedex.core.ui.paging
+package app.ijiwon.pokedex.ui.paging
 
 import androidx.compose.foundation.lazy.grid.LazyGridScope
 import androidx.paging.PagingConfig

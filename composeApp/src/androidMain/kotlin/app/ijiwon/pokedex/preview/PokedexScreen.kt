@@ -5,8 +5,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.paging.LoadState
 import androidx.paging.LoadStates
 import androidx.paging.PagingData
-import app.ijiwon.pokedex.core.designsystem.theme.PokedexTheme
-import app.ijiwon.pokedex.core.ui.paging.collectAsLazyPagingItems
+import app.ijiwon.pokedex.designsystem.theme.PokedexTheme
+import app.ijiwon.pokedex.ui.paging.collectAsLazyPagingItems
 import app.ijiwon.pokedex.features.pokedex.PokedexScreen
 import app.ijiwon.pokedex.model.Pokemon
 import kotlinx.coroutines.flow.flowOf

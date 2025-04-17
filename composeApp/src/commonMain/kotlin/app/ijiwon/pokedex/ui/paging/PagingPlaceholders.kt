@@ -1,4 +1,4 @@
-package app.ijiwon.pokedex.core.ui.paging
+package app.ijiwon.pokedex.ui.paging
 
 internal expect fun getPagingPlaceholderKey(index: Int): Any
 

@@ -1,4 +1,4 @@
-package app.ijiwon.pokedex.core.designsystem.component
+package app.ijiwon.pokedex.designsystem.component
 
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.RepeatMode
@@ -23,9 +23,9 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.rotate
 import androidx.compose.ui.unit.dp
-import app.ijiwon.pokedex.core.designsystem.theme.Gray100
-import app.ijiwon.pokedex.core.designsystem.theme.Gray300
-import app.ijiwon.pokedex.core.designsystem.theme.Gray500
+import app.ijiwon.pokedex.designsystem.theme.Gray100
+import app.ijiwon.pokedex.designsystem.theme.Gray300
+import app.ijiwon.pokedex.designsystem.theme.Gray500
 
 @Composable
 fun ActivityIndicator(

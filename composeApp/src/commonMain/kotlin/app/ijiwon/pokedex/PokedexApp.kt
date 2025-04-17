@@ -5,8 +5,8 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
-import app.ijiwon.pokedex.core.designsystem.theme.PokedexTheme
-import app.ijiwon.pokedex.core.navigation.NavigationRoute
+import app.ijiwon.pokedex.designsystem.theme.PokedexTheme
+import app.ijiwon.pokedex.navigation.NavigationRoute
 import app.ijiwon.pokedex.features.main.mainScreen
 import org.koin.compose.KoinContext
 

@@ -7,8 +7,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import app.ijiwon.pokedex.core.designsystem.component.ActivityIndicator
-import app.ijiwon.pokedex.core.designsystem.theme.White
+import app.ijiwon.pokedex.designsystem.component.ActivityIndicator
+import app.ijiwon.pokedex.designsystem.theme.White
 
 @Preview
 @Composable

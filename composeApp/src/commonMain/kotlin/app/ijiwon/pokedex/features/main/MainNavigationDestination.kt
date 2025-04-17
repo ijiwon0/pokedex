@@ -1,6 +1,6 @@
 package app.ijiwon.pokedex.features.main
 
-import app.ijiwon.pokedex.core.navigation.MainNavigationRoute
+import app.ijiwon.pokedex.navigation.MainNavigationRoute
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.StringResource
 import pokedex.composeapp.generated.resources.Res
