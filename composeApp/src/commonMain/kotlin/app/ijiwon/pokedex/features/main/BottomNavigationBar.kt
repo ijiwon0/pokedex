@@ -1,6 +1,5 @@
 package app.ijiwon.pokedex.features.main
 
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -108,7 +107,6 @@ private fun BottomNavigationBarItem(
 
         Text(
             text = stringResource(destination.label),
-            modifier = Modifier.border(1.dp, Color.Black),
             color = textColor,
             fontSize = 11.sp,
             style = MaterialTheme.typography.labelSmall,
