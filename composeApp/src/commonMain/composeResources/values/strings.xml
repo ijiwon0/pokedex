@@ -1,0 +1,7 @@
+<resources>
+    <string name="application_name">Pokémon</string>
+
+    <string name="home">Home</string>
+    <string name="pokedex">Pokédex</string>
+    <string name="items">Items</string>
+</resources>
