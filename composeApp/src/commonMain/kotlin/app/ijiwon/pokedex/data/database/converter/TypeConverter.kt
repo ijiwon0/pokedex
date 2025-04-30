@@ -1,36 +1,40 @@
 package app.ijiwon.pokedex.data.database.converter
 
 import androidx.room.TypeConverter
-import app.ijiwon.pokedex.data.database.model.NameEntity
-import app.ijiwon.pokedex.data.database.model.PokemonSpeciesVarietyEntity
+import app.ijiwon.pokedex.model.EvolutionChain
+import app.ijiwon.pokedex.model.PokedexEntry
 import app.ijiwon.pokedex.model.PokemonType
-import io.ktor.serialization.kotlinx.json.DefaultJson
+import kotlinx.serialization.json.Json
 
 object TypeConverter {
 
-    private val json = DefaultJson
+    private val Json: Json =
+        Json {
+            isLenient = true
+            allowStructuredMapKeys = true
+        }
 
     @TypeConverter
     fun fromPokemonTypes(types: List<PokemonType>): String =
-        json.encodeToString(types)
+        Json.encodeToString(types)
 
     @TypeConverter
     fun toPokemonTypes(types: String): List<PokemonType> =
-        json.decodeFromString(types)
+        Json.decodeFromString(types)
 
     @TypeConverter
-    fun fromNames(names: List<NameEntity>): String =
-        json.encodeToString(names)
+    fun fromVarieties(varieties: List<PokedexEntry>): String =
+        Json.encodeToString(varieties)
 
     @TypeConverter
-    fun toNames(names: String): List<NameEntity> =
-        json.decodeFromString(names)
+    fun toVarieties(varieties: String): List<PokedexEntry> =
+        Json.decodeFromString(varieties)
 
     @TypeConverter
-    fun fromVarieties(varieties: List<PokemonSpeciesVarietyEntity>): String =
-        json.encodeToString(varieties)
+    fun fromEvolutionChainNodes(nodes: List<EvolutionChain.Node>) =
+        Json.encodeToString(nodes)
 
     @TypeConverter
-    fun toVarieties(varieties: String): List<PokemonSpeciesVarietyEntity> =
-        json.decodeFromString(varieties)
+    fun toEvolutionChainNodes(nodes: String): List<EvolutionChain.Node> =
+        Json.decodeFromString(nodes)
 }

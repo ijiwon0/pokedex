@@ -21,9 +21,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import app.ijiwon.pokedex.designsystem.theme.Gray50
+import app.ijiwon.pokedex.designsystem.theme.Gray100
 import app.ijiwon.pokedex.designsystem.theme.Gray500
 import app.ijiwon.pokedex.designsystem.theme.Gray900
 import kotlinx.collections.immutable.ImmutableList
@@ -45,13 +46,13 @@ internal fun BottomNavigationBar(
     destinations: ImmutableList<MainNavigationDestination> = MainNavigationDestination.entries.toImmutableList(),
 ) {
     Column(modifier) {
-        HorizontalDivider(color = Gray50)
+        HorizontalDivider(color = Gray100)
 
         Row(
             modifier = Modifier
                 .windowInsetsPadding(WindowInsets.navigationBars)
                 .fillMaxWidth()
-                .height(52.dp),
+                .height(56.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically,
         ) {
@@ -99,16 +100,23 @@ private fun BottomNavigationBarItem(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Icon(
-            painter = painterResource(destination.icon),
+            painter = painterResource(
+                if (selected) {
+                    destination.selectedIcon
+                } else {
+                    destination.unselectedIcon
+                }
+            ),
             contentDescription = null,
-            modifier = Modifier.size(20.dp),
-            tint = iconColor,
+            modifier = Modifier.size(24.dp),
+            tint = Color.Unspecified,
         )
 
         Text(
             text = stringResource(destination.label),
             color = textColor,
             fontSize = 11.sp,
+            fontWeight = FontWeight.Medium,
             style = MaterialTheme.typography.labelSmall,
         )
     }

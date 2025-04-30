@@ -1,4 +1,4 @@
-package app.ijiwon.pokedex.model
+package app.ijiwon.pokedex.model.wip
 
 import kotlinx.datetime.Instant
 import kotlin.uuid.Uuid
@@ -9,6 +9,5 @@ data class News(
     val title: String,
     val subtitle: String,
     val body: String,
-    val publishDate: Instant,
+    val publishedAt: Instant,
 )
-

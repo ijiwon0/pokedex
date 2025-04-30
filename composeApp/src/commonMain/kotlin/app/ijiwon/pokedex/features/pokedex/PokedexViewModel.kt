@@ -9,6 +9,6 @@ class PokedexViewModel(
     pokemonRepository: PokemonRepository,
 ) : ViewModel() {
 
-    val pokemons = pokemonRepository.getAllPokemons()
+    val pokedexEntries = pokemonRepository.getPokedexEntries()
         .cachedIn(viewModelScope)
 }

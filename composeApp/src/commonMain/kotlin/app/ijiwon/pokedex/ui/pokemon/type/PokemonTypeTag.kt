@@ -11,13 +11,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import app.ijiwon.pokedex.model.PokemonType
 
 @Composable
 fun PokemonTypeTag(
     type: PokemonType,
     modifier: Modifier = Modifier,
-    colors: PokemonTypeColors = type.colors(),
 ) = with(type) {
     with(colors) {
         Box(modifier) {
@@ -28,7 +28,8 @@ fun PokemonTypeTag(
                     .border(1.dp, borderColor, RoundedCornerShape(4.dp))
                     .padding(horizontal = 4.dp, vertical = 2.dp),
                 color = labelColor,
-                fontWeight = FontWeight.SemiBold,
+                fontSize = 10.sp,
+                fontWeight = FontWeight.Bold,
                 style = MaterialTheme.typography.labelSmall,
             )
         }

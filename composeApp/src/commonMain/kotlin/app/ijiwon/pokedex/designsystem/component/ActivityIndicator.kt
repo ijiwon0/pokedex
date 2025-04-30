@@ -23,8 +23,8 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.rotate
 import androidx.compose.ui.unit.dp
-import app.ijiwon.pokedex.designsystem.theme.Gray100
 import app.ijiwon.pokedex.designsystem.theme.Gray300
+import app.ijiwon.pokedex.designsystem.theme.Gray50
 import app.ijiwon.pokedex.designsystem.theme.Gray500
 
 @Composable
@@ -60,7 +60,7 @@ fun ActivityIndicator(
         modifier = modifier
             .size(80.dp)
             .clip(RoundedCornerShape(12.dp))
-            .background(Gray100)
+            .background(Gray50)
             .border(1.dp, Gray300, RoundedCornerShape(12.dp)),
         contentAlignment = Alignment.Center,
     ) {

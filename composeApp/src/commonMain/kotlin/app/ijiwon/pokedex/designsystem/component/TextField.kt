@@ -79,7 +79,8 @@ fun TextField(
         cursorBrush,
         outputTransformation,
         decorator = { innerTextField ->
-            OutlinedTextFieldDefaults.DecorationBox(state.text.toString(),
+            OutlinedTextFieldDefaults.DecorationBox(
+                value = state.text.toString(),
                 innerTextField,
                 enabled,
                 singleLine = lineLimits == TextFieldLineLimits.SingleLine,
@@ -103,7 +104,8 @@ fun TextField(
                         focusedBorderThickness = 2.dp,
                         unfocusedBorderThickness = 2.dp,
                     )
-                })
+                },
+            )
         },
         scrollState,
     )

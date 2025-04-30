@@ -1,4 +1,4 @@
-package app.ijiwon.pokedex.model
+package app.ijiwon.pokedex.model.wip
 
 import kotlin.uuid.Uuid
 

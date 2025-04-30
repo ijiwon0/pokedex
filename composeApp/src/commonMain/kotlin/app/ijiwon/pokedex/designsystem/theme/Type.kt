@@ -74,6 +74,24 @@ internal fun PokedexTypography(fontFamily: FontFamily = MPlusRounded1C): Typogra
             fontFamily = fontFamily,
             lineHeightStyle = lineHeightStyle,
         ),
+        titleLarge = TextStyle(
+            fontSize = 22.sp,
+            fontWeight = FontWeight.Normal,
+            fontFamily = fontFamily,
+            lineHeightStyle = lineHeightStyle,
+        ),
+        titleMedium = TextStyle(
+            fontSize = 16.sp,
+            fontWeight = FontWeight.Medium,
+            fontFamily = fontFamily,
+            lineHeightStyle = lineHeightStyle,
+        ),
+        titleSmall = TextStyle(
+            fontSize = 14.sp,
+            fontWeight = FontWeight.Medium,
+            fontFamily = fontFamily,
+            lineHeightStyle = lineHeightStyle,
+        ),
         bodyLarge = TextStyle(
             fontSize = 16.sp,
             fontWeight = FontWeight.Normal,

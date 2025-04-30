@@ -1,30 +1,30 @@
 [versions]
-android-gradle-plugin = "8.8.1"
+android-gradle-plugin = "8.8.2"
 android-compile-sdk = "35"
 android-min-sdk = "26"
 android-target-sdk = "35"
 androidx-activity-compose = "1.10.1"
-androidx-core-ktx = "1.15.0"
+androidx-core-ktx = "1.16.0"
 androidx-espresso-core = "3.6.1"
 androidx-lifecycle = "2.8.4"
 androidx-test-junit = "1.2.1"
 androidx-paging = "3.3.6"
-coil = "3.0.4"
+apollo = "4.1.1"
+coil = "3.1.0"
 compose-multiplatform = "1.7.3"
 junit = "4.13.2"
 kermit = "2.0.5"
-koin = "4.0.2"
+koin = "4.0.4"
 kotlin = "2.1.20"
 kotlinx-collections-immutable = "0.3.8"
 kotlinx-coroutines = "1.10.1"
 kotlinx-datetime = "0.6.2"
-kotlinx-serialization-json = "1.8.0"
-ktor = "3.1.0"
-ktorfit = "2.4.0"
+kotlinx-serialization-json = "1.8.1"
+ktor = "3.1.2"
+ktorfit = "2.5.1"
 ksp = "2.1.20-1.0.31"
-room = "2.7.0-rc03"
-sqlite = "2.5.0-rc03"
-rss-parser = "6.0.10"
+room = "2.7.1"
+sqlite = "2.5.0"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -38,8 +38,8 @@ androidx-activity-compose = { module = "androidx.activity:activity-compose", ver
 androidx-lifecycle-viewmodel = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel", version.ref = "androidx-lifecycle" }
 androidx-lifecycle-runtime-compose = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidx-lifecycle" }
 androidx-paging-common = { group = "androidx.paging", name = "paging-common", version.ref = "androidx-paging" }
-androidx-paging-compose = { group = "androidx.paging", name = "paging-compose", version.ref = "androidx-paging" }
-paging-compose = { group = "app.cash.paging", name = "paging-compose-common", version = "3.3.0-alpha02-0.5.1" }
+
+apollo-runtime = { group = "com.apollographql.apollo", name = "apollo-runtime", version.ref = "apollo" }
 
 coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
 coil-network-ktor = { module = "io.coil-kt.coil3:coil-network-ktor3", version.ref = "coil" }
@@ -74,8 +74,6 @@ room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
 room-testing = { group = "androidx.room", name = "room-testing", version.ref = "room" }
 room-paging = { group = "androidx.room", name = "room-paging", version.ref = "room" }
 
-rss-parser = { group = "com.prof18.rssparser", name = "rssparser", version.ref = "rss-parser" }
-
 sqlite-bundled = { group = "androidx.sqlite", name = "sqlite-bundled", version.ref = "sqlite" }
 
 [plugins]
@@ -89,3 +87,4 @@ ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 room = { id = "androidx.room", version.ref = "room" }
 ktorfit = { id = "de.jensklingenberg.ktorfit", version.ref = "ktorfit" }
+apollo = { id = "com.apollographql.apollo", version.ref = "apollo" }

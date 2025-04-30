@@ -2,6 +2,7 @@ package app.ijiwon.pokedex.model
 
 import kotlinx.serialization.Serializable
 
+// To Use Enum Serializer on Kotlin/Native
 @Serializable
 enum class PokemonType {
     NORMAL,
@@ -23,5 +24,5 @@ enum class PokemonType {
     STEEL,
     FAIRY,
     STELLAR,
-    SHADOW,
+    SHADOW;
 }

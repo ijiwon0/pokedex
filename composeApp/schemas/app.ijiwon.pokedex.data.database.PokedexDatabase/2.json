@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 2,
-    "identityHash": "4463eb4500f1ca558c1512856ebe9971",
+    "identityHash": "d34aa71ca7ee65723d7137497e7da3e7",
     "entities": [
       {
-        "tableName": "pokemon",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `name` TEXT NOT NULL, `names` TEXT NOT NULL, `species` TEXT, `baseExperience` INTEGER NOT NULL, `height` INTEGER NOT NULL, `weight` INTEGER NOT NULL, `types` TEXT NOT NULL, `imageUrl` TEXT NOT NULL, `showdownUrl` TEXT, `varieties` TEXT NOT NULL, `hp` INTEGER NOT NULL, `attack` INTEGER NOT NULL, `defense` INTEGER NOT NULL, `specialAttack` INTEGER NOT NULL, `specialDefense` INTEGER NOT NULL, `speed` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "tableName": "pokedex_entry",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `name` TEXT NOT NULL, `types` TEXT NOT NULL, `artworkUrl` TEXT NOT NULL, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "id",
@@ -21,15 +21,46 @@
             "notNull": true
           },
           {
-            "fieldPath": "names",
-            "columnName": "names",
+            "fieldPath": "types",
+            "columnName": "types",
             "affinity": "TEXT",
             "notNull": true
           },
           {
-            "fieldPath": "species",
-            "columnName": "species",
-            "affinity": "TEXT"
+            "fieldPath": "artworkUrl",
+            "columnName": "artworkUrl",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        }
+      },
+      {
+        "tableName": "pokemon",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `name` TEXT NOT NULL, `nameJa` TEXT NOT NULL, `baseExperience` INTEGER NOT NULL, `height` INTEGER NOT NULL, `weight` INTEGER NOT NULL, `baseHappiness` INTEGER NOT NULL, `captureRate` INTEGER NOT NULL, `genderRate` INTEGER NOT NULL, `hasGenderDifferences` INTEGER NOT NULL, `isBaby` INTEGER NOT NULL, `isLegendary` INTEGER NOT NULL, `isMythical` INTEGER NOT NULL, `types` TEXT NOT NULL, `artworkUrl` TEXT NOT NULL, `varieties` TEXT NOT NULL, `evolutionChainId` INTEGER, `hp` INTEGER NOT NULL, `attack` INTEGER NOT NULL, `defense` INTEGER NOT NULL, `specialAttack` INTEGER NOT NULL, `specialDefense` INTEGER NOT NULL, `speed` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nameJa",
+            "columnName": "nameJa",
+            "affinity": "TEXT",
+            "notNull": true
           },
           {
             "fieldPath": "baseExperience",
@@ -50,27 +81,69 @@
             "notNull": true
           },
           {
+            "fieldPath": "baseHappiness",
+            "columnName": "baseHappiness",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "captureRate",
+            "columnName": "captureRate",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "genderRate",
+            "columnName": "genderRate",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "hasGenderDifferences",
+            "columnName": "hasGenderDifferences",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isBaby",
+            "columnName": "isBaby",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isLegendary",
+            "columnName": "isLegendary",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isMythical",
+            "columnName": "isMythical",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
             "fieldPath": "types",
             "columnName": "types",
             "affinity": "TEXT",
             "notNull": true
           },
           {
-            "fieldPath": "imageUrl",
-            "columnName": "imageUrl",
+            "fieldPath": "artworkUrl",
+            "columnName": "artworkUrl",
             "affinity": "TEXT",
             "notNull": true
-          },
-          {
-            "fieldPath": "showdownUrl",
-            "columnName": "showdownUrl",
-            "affinity": "TEXT"
           },
           {
             "fieldPath": "varieties",
             "columnName": "varieties",
             "affinity": "TEXT",
             "notNull": true
+          },
+          {
+            "fieldPath": "evolutionChainId",
+            "columnName": "evolutionChainId",
+            "affinity": "INTEGER"
           },
           {
             "fieldPath": "stats.hp",
@@ -119,7 +192,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '4463eb4500f1ca558c1512856ebe9971')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'd34aa71ca7ee65723d7137497e7da3e7')"
     ]
   }
 }

@@ -1,6 +1,5 @@
 package app.ijiwon.pokedex.data.database.dao
 
-import androidx.paging.PagingSource
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -10,11 +9,11 @@ import app.ijiwon.pokedex.data.database.model.PokemonEntity
 @Dao
 interface PokemonDao {
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(pokemons: List<PokemonEntity>)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insert(pokemon: PokemonEntity)
 
-    @Query("SELECT * FROM pokemon")
-    fun pagingSource(): PagingSource<Int, PokemonEntity>
+    @Query("SELECT * FROM pokemon WHERE id = :id")
+    suspend fun getById(id: Int): PokemonEntity?
 
     @Query("DELETE FROM pokemon")
     suspend fun clear()

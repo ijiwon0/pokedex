@@ -6,6 +6,6 @@ import org.koin.dsl.module
 
 val RepositoryModule = module {
     single<PokemonRepository> {
-        PokemonDataRepository(get(), get(), get())
+        PokemonDataRepository(get(), get(), get(), get())
     }
 }

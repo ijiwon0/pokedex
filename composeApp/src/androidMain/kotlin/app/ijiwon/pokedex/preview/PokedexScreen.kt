@@ -6,17 +6,17 @@ import androidx.paging.LoadState
 import androidx.paging.LoadStates
 import androidx.paging.PagingData
 import app.ijiwon.pokedex.designsystem.theme.PokedexTheme
-import app.ijiwon.pokedex.ui.paging.collectAsLazyPagingItems
 import app.ijiwon.pokedex.features.pokedex.PokedexScreen
-import app.ijiwon.pokedex.model.Pokemon
+import app.ijiwon.pokedex.model.PokedexEntry
+import app.ijiwon.pokedex.ui.paging.collectAsLazyPagingItems
 import kotlinx.coroutines.flow.flowOf
 
 @Preview
 @Composable
 private fun PokedexScreenPreview() {
     PokedexTheme {
-        val pokemons = flowOf(
-            PagingData.empty<Pokemon>(
+        val pokedexEntries = flowOf(
+            PagingData.empty<PokedexEntry>(
                 sourceLoadStates = LoadStates(
                     refresh = LoadState.Loading,
                     prepend = LoadState.Loading,
@@ -25,6 +25,6 @@ private fun PokedexScreenPreview() {
             )
         ).collectAsLazyPagingItems()
         
-        PokedexScreen(pokemons, onPokemonClick = {})
+        PokedexScreen(pokedexEntries, onPokemonClick = {})
     }
 }

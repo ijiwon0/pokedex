@@ -3,43 +3,30 @@ package app.ijiwon.pokedex.data.database.model
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import app.ijiwon.pokedex.model.PokedexEntry
+import app.ijiwon.pokedex.model.Pokemon
 import app.ijiwon.pokedex.model.PokemonType
-import kotlinx.serialization.Serializable
 
 @Entity(tableName = "pokemon")
 data class PokemonEntity(
     @PrimaryKey val id: Int,
     val name: String,
-    val names: List<NameEntity> = emptyList(),
-    val species: String? = null,
+    val nameJa: String,
+    val genus: String,
     val baseExperience: Int,
     val height: Int,
     val weight: Int,
+    val baseHappiness: Int,
+    val captureRate: Int,
+    val genderRate: Int,
+    val hasGenderDifferences: Boolean,
+    val isBaby: Boolean,
+    val isLegendary: Boolean,
+    val isMythical: Boolean,
     val types: List<PokemonType>,
-    @Embedded val stats: PokemonStatsEntity,
-    val imageUrl: String,
-    val showdownUrl: String?,
-    val varieties: List<PokemonSpeciesVarietyEntity> = emptyList(),
-)
-
-data class PokemonStatsEntity(
-    val hp: Int,
-    val attack: Int,
-    val defense: Int,
-    val specialAttack: Int,
-    val specialDefense: Int,
-    val speed: Int,
-)
-
-@Serializable
-data class PokemonSpeciesVarietyEntity(
-    val name: String,
-    val imageUrl: String,
-    val types: List<PokemonType>,
-)
-
-@Serializable
-data class NameEntity(
-    val name: String,
-    val language: String,
+    @Embedded val stats: Pokemon.Stats,
+    val artworkUrl: String,
+    val showdownUrl: String,
+    val varieties: List<PokedexEntry>,
+    val evolutionChainId: Int? = null,
 )

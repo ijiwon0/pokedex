@@ -2,6 +2,7 @@ package app.ijiwon.pokedex.features.pokedex
 
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.background
+import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -31,19 +32,19 @@ import app.ijiwon.pokedex.designsystem.theme.Gray100
 import app.ijiwon.pokedex.designsystem.theme.Gray50
 import app.ijiwon.pokedex.designsystem.theme.Gray700
 import app.ijiwon.pokedex.designsystem.theme.Gray900
+import app.ijiwon.pokedex.model.PokedexEntry
 import app.ijiwon.pokedex.ui.pokemon.type.colors
-import app.ijiwon.pokedex.model.Pokemon
 import coil3.compose.AsyncImage
 
 @Composable
-internal fun PokedexEntry(
-    pokemon: Pokemon,
+internal fun PokedexListItem(
+    value: PokedexEntry,
     modifier: Modifier = Modifier,
     interactionSource: MutableInteractionSource = remember {
         MutableInteractionSource()
     },
-    onClick: (Pokemon) -> Unit,
-) = with(pokemon) {
+    onClick: (PokedexEntry) -> Unit,
+) = with(value) {
     val isPressed by interactionSource.collectIsPressedAsState()
 
     val scale by animateFloatAsState(
@@ -55,13 +56,13 @@ internal fun PokedexEntry(
     )
 
     Row(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .clickable(
                 interactionSource = interactionSource,
                 indication = null,
             ) {
-                onClick(pokemon)
+                onClick(value)
             }
             .padding(horizontal = 4.dp)
             .background(
@@ -87,16 +88,10 @@ internal fun PokedexEntry(
                 .border(1.dp, Gray100, RoundedCornerShape(8.dp)),
             contentAlignment = Alignment.Center,
         ) {
-            val model = if (isPressed) {
-                showdownUrl ?: imageUrl
-            } else {
-                imageUrl
-            }
-
             AsyncImage(
-                model = model,
+                model = artworkUrl,
                 contentDescription = null,
-                modifier = Modifier.size(32.dp),
+                modifier = Modifier.size(36.dp),
                 contentScale = ContentScale.Fit,
             )
         }
@@ -104,28 +99,25 @@ internal fun PokedexEntry(
         Column(modifier = Modifier.weight(1F)) {
             Text(
                 text = name,
+                modifier = Modifier.basicMarquee(),
                 color = Gray900,
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Medium,
+                maxLines = 1,
                 style = MaterialTheme.typography.bodyLarge,
             )
 
             Text(
-                text = when (id) {
-                    in 1..9 -> "#000$id"
-                    in 10..99 -> "#00$id"
-                    in 100..999 -> "#0$id"
-                    else -> "#$id"
-                },
+                text = idLabel,
                 color = Gray700,
-                fontWeight = FontWeight.Medium,
+                fontWeight = FontWeight.SemiBold,
                 style = MaterialTheme.typography.labelMedium,
             )
         }
 
-        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+        Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
             types.forEach { type ->
-                val colors = type.colors()
+                val colors = type.colors
 
                 Box(
                     modifier = Modifier
@@ -145,3 +137,11 @@ internal fun PokedexEntry(
         }
     }
 }
+
+internal val PokedexEntry.idLabel: String
+    get() = when (id) {
+        in 1..9 -> "#000$id"
+        in 10..99 -> "#00$id"
+        in 100..999 -> "#0$id"
+        else -> "#$id"
+    }

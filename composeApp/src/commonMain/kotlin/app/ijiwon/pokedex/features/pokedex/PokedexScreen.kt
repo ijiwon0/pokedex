@@ -20,9 +20,9 @@ import androidx.compose.ui.unit.dp
 import androidx.paging.LoadState
 import app.ijiwon.pokedex.designsystem.component.ActivityIndicator
 import app.ijiwon.pokedex.designsystem.theme.White
+import app.ijiwon.pokedex.model.PokedexEntry
 import app.ijiwon.pokedex.ui.paging.LazyPagingItems
 import app.ijiwon.pokedex.ui.paging.collectAsLazyPagingItems
-import app.ijiwon.pokedex.model.Pokemon
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
@@ -31,7 +31,7 @@ fun PokedexScreen(
     modifier: Modifier = Modifier,
     viewModel: PokedexViewModel = koinViewModel(),
 ) {
-    val pokemons = viewModel.pokemons.collectAsLazyPagingItems()
+    val pokemons = viewModel.pokedexEntries.collectAsLazyPagingItems()
 
     PokedexScreen(
         pokemons,
@@ -44,8 +44,8 @@ fun PokedexScreen(
 
 @Composable
 internal fun PokedexScreen(
-    pokemons: LazyPagingItems<Pokemon>,
-    onPokemonClick: (Pokemon) -> Unit,
+    pokemons: LazyPagingItems<PokedexEntry>,
+    onPokemonClick: (PokedexEntry) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val isLoading by remember {
@@ -58,8 +58,7 @@ internal fun PokedexScreen(
         modifier = modifier.background(White),
     ) {
         LazyColumn(
-            modifier = Modifier
-                .fillMaxSize(),
+            modifier = Modifier.fillMaxSize(),
             contentPadding = with(WindowInsets.statusBars.asPaddingValues()) {
                 val horizontal = 8.dp
                 val top = calculateTopPadding() + calculateBottomPadding() + 72.dp
@@ -67,12 +66,12 @@ internal fun PokedexScreen(
 
                 PaddingValues(horizontal, top, horizontal, bottom)
             },
-            verticalArrangement = Arrangement.spacedBy(8.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
             items(pokemons.itemCount) {
                 val pokemon = pokemons[it] ?: return@items
 
-                PokedexEntry(
+                PokedexListItem(
                     pokemon,
                     onClick = onPokemonClick,
                 )

@@ -20,6 +20,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavDestination.Companion.hasRoute
+import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -27,24 +28,25 @@ import androidx.navigation.compose.rememberNavController
 import app.ijiwon.pokedex.designsystem.theme.Green200
 import app.ijiwon.pokedex.designsystem.theme.White
 import app.ijiwon.pokedex.navigation.MainNavigationRoute
-import app.ijiwon.pokedex.features.home.homeScreen
-import app.ijiwon.pokedex.features.items.itemsScreen
-import app.ijiwon.pokedex.features.pokedex.pokedexScreen
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
-fun MainScreen(modifier: Modifier = Modifier) {
-    Content(modifier)
+fun MainScreen(
+    modifier: Modifier = Modifier,
+    navigationGraph: NavGraphBuilder.(nestedNavigationController: NavHostController) -> Unit,
+) {
+    MainContent(modifier, navigationGraph = navigationGraph)
 }
 
 @Composable
-private fun Content(
+private fun MainContent(
     modifier: Modifier = Modifier,
     navigationController: NavHostController = rememberNavController(),
-    startDestination: MainNavigationDestination = MainNavigationDestination.HOME,
+    startDestination: MainNavigationDestination = MainNavigationDestination.Home,
     destinations: ImmutableList<MainNavigationDestination> = MainNavigationDestination.entries.toImmutableList(),
+    navigationGraph: NavGraphBuilder.(nestedNavigationController: NavHostController) -> Unit,
 ) {
     val navigationBackStackEntry by navigationController.currentBackStackEntryAsState()
 
@@ -66,6 +68,7 @@ private fun Content(
                     .weight(1F)
                     .background(White),
                 startDestination = startDestination.route,
+                builder = navigationGraph,
             )
 
             BottomNavigationBar(
@@ -132,19 +135,14 @@ private fun MainNavigationHost(
     navigationController: NavHostController,
     modifier: Modifier = Modifier,
     startDestination: MainNavigationRoute = MainNavigationRoute.Home,
+    builder: NavGraphBuilder.(nestedNavigationController: NavHostController) -> Unit,
 ) {
     NavHost(
         navigationController,
         startDestination,
         modifier,
-    ) {
-        homeScreen()
-
-        pokedexScreen(
-            onPokemonClick = {
-            },
-        )
-
-        itemsScreen(onItemClick = {})
-    }
+        builder = {
+            builder(navigationController)
+        },
+    )
 }

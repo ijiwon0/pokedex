@@ -4,4 +4,10 @@
     <string name="home">Home</string>
     <string name="pokedex">Pokédex</string>
     <string name="items">Items</string>
+
+    <string name="height">HEIGHT</string>
+    <string name="weight">WEIGHT</string>
+    <string name="base_experience">BASE XP</string>
+    <string name="catch_rate">CATCH RATE</string>
+    <string name="varieties">VARIATIES</string>
 </resources>

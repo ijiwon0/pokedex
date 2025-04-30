@@ -1,0 +1,15 @@
+query GetPokedexEntries($limit: Int, $offset: Int) {
+    pokemon_v2_pokemonspecies(limit: $limit, offset: $offset, order_by: {id: asc}) {
+        id
+        pokemon_v2_pokemonspeciesnames(where: {language_id: {_eq: 9}}) {
+            name
+        }
+        pokemon_v2_pokemons {
+            pokemon_v2_pokemontypes {
+                pokemon_v2_type {
+                    name
+                }
+            }
+        }
+    }
+}

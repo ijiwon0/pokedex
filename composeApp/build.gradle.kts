@@ -9,6 +9,7 @@ plugins {
     alias(libs.plugins.ksp)
     alias(libs.plugins.room)
     alias(libs.plugins.ktorfit)
+    alias(libs.plugins.apollo)
 }
 
 kotlin {
@@ -50,6 +51,7 @@ kotlin {
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtime.compose)
             implementation(libs.androidx.paging.common)
+            implementation(libs.apollo.runtime)
             implementation(libs.coil.compose)
             implementation(libs.coil.network.ktor)
             implementation(libs.coil.gif)
@@ -70,7 +72,6 @@ kotlin {
             implementation(libs.ktor.serialization.kotlinx.json)
             implementation(libs.room.runtime)
             implementation(libs.room.paging)
-            implementation(libs.rss.parser)
             implementation(libs.sqlite.bundled)
         }
         androidMain.dependencies {
@@ -133,4 +134,17 @@ room {
 composeCompiler {
     metricsDestination = layout.buildDirectory.dir("compose_compiler")
     reportsDestination = layout.buildDirectory.dir("compose_compiler")
+}
+
+apollo {
+    service("pokeapi") {
+        packageName.set("app.ijiwon.pokedex.graphql")
+
+        introspection {
+            endpointUrl.set("https://beta.pokeapi.co/graphql/v1beta")
+            schemaFile.set(file("src/commonMain/graphql/schema.graphqls"))
+        }
+
+        generateInputBuilders.set(true)
+    }
 }
