@@ -28,7 +28,7 @@ internal fun Pokemon_v2_pokemon.toPokemonEntity(): PokemonEntity {
 
     val types = pokemon_v2_pokemontypes.map(::toPokemonType)
 
-    val stats = toPokemonStats(pokemon_v2_pokemonstats)
+    val stats = toPokemonEntityStats(pokemon_v2_pokemonstats)
 
     val artworkUrl = artworkUrl(id)
 
@@ -71,9 +71,9 @@ private fun toPokemonType(type: Pokemon_v2_pokemontype) = with(type) {
         .let(PokemonType::valueOf)
 }
 
-private fun toPokemonStats(
+private fun toPokemonEntityStats(
     stats: List<Pokemon_v2_pokemonstat>,
-): Pokemon.Stats {
+): PokemonEntity.Stats {
     var hp = 0
     var attack = 0
     var defense = 0
@@ -95,7 +95,7 @@ private fun toPokemonStats(
         }
     }
 
-    return Pokemon.Stats(
+    return PokemonEntity.Stats(
         hp,
         attack,
         defense,
@@ -144,7 +144,16 @@ fun PokemonEntity.toPokemon(evolutionChain: EvolutionChainEntity?): Pokemon {
         artworkUrl = artworkUrl,
         showdownUrl = showdownUrl,
         types = types,
-        stats = stats,
+        stats = with(stats) {
+            Pokemon.Stats(
+                Pokemon.Stat(Pokemon.StatType.HP, hp),
+                Pokemon.Stat(Pokemon.StatType.ATTACK, attack),
+                Pokemon.Stat(Pokemon.StatType.DEFENSE, defense),
+                Pokemon.Stat(Pokemon.StatType.SPECIAL_ATTACK, specialAttack),
+                Pokemon.Stat(Pokemon.StatType.SPECIAL_DEFENSE, specialDefense),
+                Pokemon.Stat(Pokemon.StatType.SPEED, speed),
+            )
+        },
         height = Meter(height / 10F),
         weight = Kilogram(weight / 10F),
         baseExperience = baseExperience,

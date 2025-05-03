@@ -44,7 +44,7 @@ fun MainScreen(
 private fun MainContent(
     modifier: Modifier = Modifier,
     navigationController: NavHostController = rememberNavController(),
-    startDestination: MainNavigationDestination = MainNavigationDestination.Home,
+    startDestination: MainNavigationDestination = MainNavigationDestination.Pokedex,
     destinations: ImmutableList<MainNavigationDestination> = MainNavigationDestination.entries.toImmutableList(),
     navigationGraph: NavGraphBuilder.(nestedNavigationController: NavHostController) -> Unit,
 ) {

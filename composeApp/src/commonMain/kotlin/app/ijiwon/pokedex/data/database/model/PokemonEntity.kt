@@ -4,7 +4,6 @@ import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import app.ijiwon.pokedex.model.PokedexEntry
-import app.ijiwon.pokedex.model.Pokemon
 import app.ijiwon.pokedex.model.PokemonType
 
 @Entity(tableName = "pokemon")
@@ -24,9 +23,19 @@ data class PokemonEntity(
     val isLegendary: Boolean,
     val isMythical: Boolean,
     val types: List<PokemonType>,
-    @Embedded val stats: Pokemon.Stats,
+    @Embedded val stats: Stats,
     val artworkUrl: String,
     val showdownUrl: String,
     val varieties: List<PokedexEntry>,
     val evolutionChainId: Int? = null,
-)
+    val isFavorite: Boolean = false,
+) {
+    data class Stats(
+        val hp: Int,
+        val attack: Int,
+        val defense: Int,
+        val specialAttack: Int,
+        val specialDefense: Int,
+        val speed: Int,
+    )
+}

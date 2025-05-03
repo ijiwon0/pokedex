@@ -1,6 +1,7 @@
-package app.ijiwon.pokedex.features.pokedex
+package app.ijiwon.pokedex.ui.pokedex
 
 import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.foundation.MarqueeSpacing
 import androidx.compose.foundation.background
 import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.border
@@ -38,13 +39,13 @@ import coil3.compose.AsyncImage
 
 @Composable
 internal fun PokedexListItem(
-    value: PokedexEntry,
+    entry: PokedexEntry,
     modifier: Modifier = Modifier,
     interactionSource: MutableInteractionSource = remember {
         MutableInteractionSource()
     },
     onClick: (PokedexEntry) -> Unit,
-) = with(value) {
+) = with(entry) {
     val isPressed by interactionSource.collectIsPressedAsState()
 
     val scale by animateFloatAsState(
@@ -62,7 +63,7 @@ internal fun PokedexListItem(
                 interactionSource = interactionSource,
                 indication = null,
             ) {
-                onClick(value)
+                onClick(entry)
             }
             .padding(horizontal = 4.dp)
             .background(
@@ -99,7 +100,11 @@ internal fun PokedexListItem(
         Column(modifier = Modifier.weight(1F)) {
             Text(
                 text = name,
-                modifier = Modifier.basicMarquee(),
+                modifier = Modifier.basicMarquee(
+                    iterations = Int.MAX_VALUE,
+                    repeatDelayMillis = 0,
+                    spacing = MarqueeSpacing(32.dp),
+                ),
                 color = Gray900,
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Medium,
@@ -110,7 +115,7 @@ internal fun PokedexListItem(
             Text(
                 text = idLabel,
                 color = Gray700,
-                fontWeight = FontWeight.SemiBold,
+                fontWeight = FontWeight.Medium,
                 style = MaterialTheme.typography.labelMedium,
             )
         }

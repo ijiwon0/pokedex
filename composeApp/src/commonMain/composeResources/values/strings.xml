@@ -9,5 +9,19 @@
     <string name="weight">WEIGHT</string>
     <string name="base_experience">BASE XP</string>
     <string name="catch_rate">CATCH RATE</string>
+
     <string name="varieties">VARIATIES</string>
+    <string name="evolution">EVOLUTION</string>
+    <string name="base_stats">BASE STATS</string>
+
+    <string name="hp">HP</string>
+    <string name="attack">ATK</string>
+    <string name="defence">DEF</string>
+    <string name="special_attack">SP.ATK</string>
+    <string name="special_defence">SP.DEF</string>
+    <string name="speed">SPD</string>
+    <string name="total_stats">Total: %1$d</string>
+
+    <string name="oops">Oops!</string>
+    <string name="try_again">Try again</string>
 </resources>

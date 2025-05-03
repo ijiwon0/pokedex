@@ -44,6 +44,13 @@ private fun NavigationHost(
             itemsScreen(onItemClick = {})
         }
 
-        pokemonDetailsScreen()
+        pokemonDetailsScreen(
+            onBackClick = {
+                navigationController.popBackStack()
+            },
+            onPokemonClick = { id ->
+                navigationController.navigate(NavigationRoute.PokemonDetails(id))
+            },
+        )
     }
 }

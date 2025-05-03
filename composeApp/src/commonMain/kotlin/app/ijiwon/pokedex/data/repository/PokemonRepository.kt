@@ -79,7 +79,8 @@ class PokemonDataRepository(
         val response = apolloClient.query(query)
             .execute()
 
-        return response.dataOrThrow()
-            .pokemon_v2_pokemon[0]
+        val data = response.dataOrThrow()
+
+        return data.pokemon_v2_pokemon[0]
     }
 }

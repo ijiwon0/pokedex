@@ -7,12 +7,16 @@ import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
 import app.ijiwon.pokedex.navigation.NavigationRoute
 
-fun NavGraphBuilder.pokemonDetailsScreen(modifier: Modifier = Modifier) {
+fun NavGraphBuilder.pokemonDetailsScreen(
+    onBackClick: () -> Unit,
+    onPokemonClick: (Int) -> Unit,
+    modifier: Modifier = Modifier,
+) {
     composable<NavigationRoute.PokemonDetails> { entry: NavBackStackEntry ->
         val id = entry
             .toRoute<NavigationRoute.PokemonDetails>()
             .id
 
-        PokemonDetailsScreen(id, modifier)
+        PokemonDetailsScreen(id, onBackClick, onPokemonClick, modifier)
     }
 }

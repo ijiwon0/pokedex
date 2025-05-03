@@ -27,19 +27,26 @@ data class Pokemon(
 ) {
     @Serializable
     data class Stats(
-        val hp: Int,
-        val attack: Int,
-        val defense: Int,
-        val specialAttack: Int,
-        val specialDefense: Int,
-        val speed: Int,
-    )
+        val hp: Stat,
+        val attack: Stat,
+        val defense: Stat,
+        val specialAttack: Stat,
+        val specialDefense: Stat,
+        val speed: Stat,
+    ) {
+        val total: Int
+            get() = hp.value + attack.value + defense.value + specialAttack.value + specialDefense.value + speed.value
+    }
 
     @Serializable
-    data class Variety(
-        val id: Int,
-        val name: String,
-        val artworkUrl: String,
-        val types: List<PokemonType>,
-    )
+    data class Stat(val type: StatType, val value: Int)
+
+    enum class StatType {
+        HP,
+        ATTACK,
+        DEFENSE,
+        SPECIAL_ATTACK,
+        SPECIAL_DEFENSE,
+        SPEED,
+    }
 }

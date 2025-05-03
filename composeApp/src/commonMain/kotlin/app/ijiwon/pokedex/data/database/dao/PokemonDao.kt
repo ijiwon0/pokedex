@@ -9,7 +9,7 @@ import app.ijiwon.pokedex.data.database.model.PokemonEntity
 @Dao
 interface PokemonDao {
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(pokemon: PokemonEntity)
 
     @Query("SELECT * FROM pokemon WHERE id = :id")

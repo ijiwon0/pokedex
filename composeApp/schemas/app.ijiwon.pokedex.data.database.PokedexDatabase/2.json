@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 2,
-    "identityHash": "d34aa71ca7ee65723d7137497e7da3e7",
+    "identityHash": "45cad4b9d4543bb45496363809ee3185",
     "entities": [
       {
         "tableName": "pokedex_entry",
@@ -42,7 +42,7 @@
       },
       {
         "tableName": "pokemon",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `name` TEXT NOT NULL, `nameJa` TEXT NOT NULL, `baseExperience` INTEGER NOT NULL, `height` INTEGER NOT NULL, `weight` INTEGER NOT NULL, `baseHappiness` INTEGER NOT NULL, `captureRate` INTEGER NOT NULL, `genderRate` INTEGER NOT NULL, `hasGenderDifferences` INTEGER NOT NULL, `isBaby` INTEGER NOT NULL, `isLegendary` INTEGER NOT NULL, `isMythical` INTEGER NOT NULL, `types` TEXT NOT NULL, `artworkUrl` TEXT NOT NULL, `varieties` TEXT NOT NULL, `evolutionChainId` INTEGER, `hp` INTEGER NOT NULL, `attack` INTEGER NOT NULL, `defense` INTEGER NOT NULL, `specialAttack` INTEGER NOT NULL, `specialDefense` INTEGER NOT NULL, `speed` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `name` TEXT NOT NULL, `nameJa` TEXT NOT NULL, `genus` TEXT NOT NULL, `baseExperience` INTEGER NOT NULL, `height` INTEGER NOT NULL, `weight` INTEGER NOT NULL, `baseHappiness` INTEGER NOT NULL, `captureRate` INTEGER NOT NULL, `genderRate` INTEGER NOT NULL, `hasGenderDifferences` INTEGER NOT NULL, `isBaby` INTEGER NOT NULL, `isLegendary` INTEGER NOT NULL, `isMythical` INTEGER NOT NULL, `types` TEXT NOT NULL, `artworkUrl` TEXT NOT NULL, `showdownUrl` TEXT NOT NULL, `varieties` TEXT NOT NULL, `evolutionChainId` INTEGER, `isFavorite` INTEGER NOT NULL, `hp` INTEGER NOT NULL, `attack` INTEGER NOT NULL, `defense` INTEGER NOT NULL, `specialAttack` INTEGER NOT NULL, `specialDefense` INTEGER NOT NULL, `speed` INTEGER NOT NULL, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "id",
@@ -59,6 +59,12 @@
           {
             "fieldPath": "nameJa",
             "columnName": "nameJa",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "genus",
+            "columnName": "genus",
             "affinity": "TEXT",
             "notNull": true
           },
@@ -135,6 +141,12 @@
             "notNull": true
           },
           {
+            "fieldPath": "showdownUrl",
+            "columnName": "showdownUrl",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
             "fieldPath": "varieties",
             "columnName": "varieties",
             "affinity": "TEXT",
@@ -144,6 +156,12 @@
             "fieldPath": "evolutionChainId",
             "columnName": "evolutionChainId",
             "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "isFavorite",
+            "columnName": "isFavorite",
+            "affinity": "INTEGER",
+            "notNull": true
           },
           {
             "fieldPath": "stats.hp",
@@ -188,11 +206,35 @@
             "id"
           ]
         }
+      },
+      {
+        "tableName": "evolution_chain",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `pokemons` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pokemons",
+            "columnName": "pokemons",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        }
       }
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'd34aa71ca7ee65723d7137497e7da3e7')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '45cad4b9d4543bb45496363809ee3185')"
     ]
   }
 }

@@ -2,6 +2,7 @@ package app.ijiwon.pokedex.features.pokemon
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -26,17 +27,16 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -57,13 +57,17 @@ import app.ijiwon.pokedex.designsystem.theme.Gray300
 import app.ijiwon.pokedex.designsystem.theme.Gray50
 import app.ijiwon.pokedex.designsystem.theme.Gray500
 import app.ijiwon.pokedex.designsystem.theme.Gray600
-import app.ijiwon.pokedex.designsystem.theme.Gray700
 import app.ijiwon.pokedex.designsystem.theme.Gray900
 import app.ijiwon.pokedex.designsystem.theme.White
+import app.ijiwon.pokedex.designsystem.theme.Yellow500
+import app.ijiwon.pokedex.features.pokemon.section.PokemonEvolution
+import app.ijiwon.pokedex.features.pokemon.section.PokemonStats
+import app.ijiwon.pokedex.features.pokemon.section.PokemonVarieties
 import app.ijiwon.pokedex.model.Kilogram
 import app.ijiwon.pokedex.model.Meter
 import app.ijiwon.pokedex.model.Pokemon
 import app.ijiwon.pokedex.model.PokemonType
+import app.ijiwon.pokedex.ui.error.ErrorView
 import app.ijiwon.pokedex.ui.pokemon.type.PokemonTypeTag
 import coil3.compose.AsyncImage
 import kotlinx.collections.immutable.ImmutableList
@@ -74,14 +78,18 @@ import org.koin.compose.viewmodel.koinViewModel
 import org.koin.core.parameter.parametersOf
 import pokedex.composeapp.generated.resources.Res
 import pokedex.composeapp.generated.resources.base_experience
-import pokedex.composeapp.generated.resources.caret_left
 import pokedex.composeapp.generated.resources.catch_rate
+import pokedex.composeapp.generated.resources.chevron_left
 import pokedex.composeapp.generated.resources.height
+import pokedex.composeapp.generated.resources.star_filled
+import pokedex.composeapp.generated.resources.star_outlined
 import pokedex.composeapp.generated.resources.weight
 
 @Composable
 fun PokemonDetailsScreen(
-    id: Int = 6,
+    id: Int,
+    onBackClick: () -> Unit,
+    onPokemonClick: (Int) -> Unit,
     modifier: Modifier = Modifier,
     viewModel: PokemonDetailsViewModel = koinViewModel {
         parametersOf(id)
@@ -89,39 +97,47 @@ fun PokemonDetailsScreen(
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
-    PokemonDetailsScreen(uiState, modifier)
+    PokemonDetailsScreen(
+        uiState,
+        onBackClick,
+        onRetryClick = viewModel::retry,
+        onPokemonClick = {
+            if (id != it) onPokemonClick(it)
+        },
+        modifier,
+    )
 }
 
 @Composable
 internal fun PokemonDetailsScreen(
     uiState: PokemonDetailsUiState,
+    onBackClick: () -> Unit,
+    onRetryClick: () -> Unit,
+    onPokemonClick: (Int) -> Unit,
     modifier: Modifier = Modifier,
     snackbarHostState: SnackbarHostState = remember {
         SnackbarHostState()
     },
 ) {
-    LaunchedEffect(uiState) {
-        if (uiState is PokemonDetailsUiState.Error) {
-            snackbarHostState.showSnackbar(uiState.message)
-        }
-    }
-
-    Scaffold(
-        modifier = modifier,
-        snackbarHost = {
-            SnackbarHost(snackbarHostState)
-        },
-        containerColor = Color(0xFFF2F2F7),
+    Box(
+        modifier = modifier
+            .fillMaxSize()
+            .background(Color(0xFFF2F2F7)),
+        contentAlignment = Alignment.Center,
     ) {
-        Box(Modifier.fillMaxSize()) {
-            if (uiState is PokemonDetailsUiState.Success) {
-                PokemonDetailsContent(uiState.pokemon)
+        when (uiState) {
+            PokemonDetailsUiState.Loading -> {
+                ActivityIndicator()
             }
-
-            val isLoading = uiState == PokemonDetailsUiState.Loading
-
-            if (isLoading) {
-                ActivityIndicator(modifier = Modifier.align(Alignment.Center))
+            is PokemonDetailsUiState.Error -> {
+                ErrorView(uiState.message, onRetryClick)
+            }
+            is PokemonDetailsUiState.Success -> {
+                PokemonDetailsContent(
+                    pokemon = uiState.pokemon,
+                    onBackClick,
+                    onPokemonClick,
+                )
             }
         }
     }
@@ -132,6 +148,7 @@ private fun TopAppBar(
     artworkUrl: String,
     name: String,
     showPokemon: Boolean,
+    onBackClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Box(
@@ -141,14 +158,21 @@ private fun TopAppBar(
             .windowInsetsPadding(WindowInsets.statusBars)
             .height(52.dp),
     ) {
-        Icon(
-            painter = painterResource(Res.drawable.caret_left),
-            contentDescription = null,
+        Box(
             modifier = Modifier
                 .align(Alignment.CenterStart)
-                .padding(start = 16.dp),
-            tint = Gray500,
-        )
+                .padding(start = 16.dp)
+                .size(24.dp)
+                .clickable(onClick = onBackClick),
+            contentAlignment = Alignment.Center,
+        ) {
+            Icon(
+                painter = painterResource(Res.drawable.chevron_left),
+                contentDescription = null,
+                modifier = Modifier.size(20.dp),
+                tint = Gray500,
+            )
+        }
 
         Row(
             modifier = Modifier
@@ -175,31 +199,65 @@ private fun TopAppBar(
                 style = MaterialTheme.typography.titleMedium,
             )
         }
+
+        Row(
+            modifier = Modifier
+                .align(Alignment.CenterEnd)
+                .padding(end = 16.dp),
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
+        ) {
+            var isFavorite by remember { mutableStateOf(false) }
+
+            Box(
+                modifier = Modifier
+                    .size(24.dp)
+                    .clickable {
+                        isFavorite = !isFavorite
+                    },
+                contentAlignment = Alignment.Center,
+            ) {
+
+                Icon(
+                    painter = painterResource(
+                        if (isFavorite) {
+                            Res.drawable.star_filled
+                        } else {
+                            Res.drawable.star_outlined
+                        }
+                    ),
+                    contentDescription = null,
+                    modifier = Modifier.size(20.dp),
+                    tint = if (isFavorite) Yellow500 else Gray500,
+                )
+            }
+        }
     }
 }
 
 @Composable
 private fun PokemonDetailsContent(
     pokemon: Pokemon,
+    onBackClick: () -> Unit,
+    onPokemonClick: (Int) -> Unit,
     modifier: Modifier = Modifier,
 ) = with(pokemon) {
     val scrollState = rememberScrollState()
 
-    val p = remember {
+    val threshold = remember {
         mutableFloatStateOf(0F)
     }
 
     val showPreview by derivedStateOf {
-        scrollState.canScrollBackward and (scrollState.value > p.value)
+        scrollState.canScrollBackward and (scrollState.value > threshold.value)
     }
 
     Column(
         modifier = modifier,
     ) {
-        TopAppBar(artworkUrl, name, showPreview)
+        TopAppBar(artworkUrl, name, showPreview, onBackClick)
 
         if (scrollState.canScrollBackward) {
-            HorizontalDivider(color = Gray50)
+            HorizontalDivider(color = Gray100)
         }
 
         Column(
@@ -215,8 +273,8 @@ private fun PokemonDetailsContent(
                 genus,
                 types.toImmutableList(),
                 modifier = Modifier.onGloballyPositioned { layoutCoordinates ->
-                    p.value = with(layoutCoordinates) {
-                        positionInParent().y + boundsInParent().height / 2
+                    threshold.value = with(layoutCoordinates) {
+                        positionInParent().y + boundsInParent().height / 4
                     }
                 },
             )
@@ -228,17 +286,26 @@ private fun PokemonDetailsContent(
                 captureRate,
             )
 
-            HorizontalDivider(color = Gray100)
+            HorizontalDivider(color = Gray200)
 
             Column(
-                modifier = Modifier
-                    .padding(horizontal = 16.dp, vertical = 24.dp),
+                modifier = Modifier.padding(horizontal = 16.dp, vertical = 24.dp),
+                verticalArrangement = Arrangement.spacedBy(24.dp),
             ) {
                 PokemonVarieties(
-                    varieties.toImmutableList(),
+                    varieties = varieties.toImmutableList(),
                     onVarietyClick = {
+                        onPokemonClick(it.id)
                     },
                 )
+
+                if (evolutionChain != null) {
+                    PokemonEvolution(evolutionChain)
+                }
+
+                PokemonStats(stats)
+
+                Spacer(Modifier.height(32.dp))
             }
         }
     }
@@ -300,7 +367,7 @@ private fun PokemonProfile(
                     modifier = Modifier
                         .background(Gray300, CircleShape)
                         .padding(horizontal = 4.dp, vertical = 2.dp),
-                    color = Gray700,
+                    color = Gray600,
                     fontWeight = FontWeight.SemiBold,
                     style = MaterialTheme.typography.labelMedium
                 )

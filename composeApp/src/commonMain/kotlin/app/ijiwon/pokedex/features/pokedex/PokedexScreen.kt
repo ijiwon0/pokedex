@@ -23,6 +23,7 @@ import app.ijiwon.pokedex.designsystem.theme.White
 import app.ijiwon.pokedex.model.PokedexEntry
 import app.ijiwon.pokedex.ui.paging.LazyPagingItems
 import app.ijiwon.pokedex.ui.paging.collectAsLazyPagingItems
+import app.ijiwon.pokedex.ui.pokedex.PokedexListItem
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
