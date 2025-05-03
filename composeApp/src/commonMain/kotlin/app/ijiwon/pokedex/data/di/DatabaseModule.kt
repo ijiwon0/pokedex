@@ -9,7 +9,7 @@ import app.ijiwon.pokedex.data.database.dao.PokedexDao
 import app.ijiwon.pokedex.data.database.dao.PokemonDao
 import org.koin.dsl.module
 
-val DatabaseModule = module {
+internal val DatabaseModule = module {
     single<SQLiteDriver> {
         BundledSQLiteDriver()
     }
